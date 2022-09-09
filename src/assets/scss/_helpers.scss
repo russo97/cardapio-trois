@@ -1,0 +1,63 @@
+
+@mixin sizedBox ($width: 10px, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@each $display in (flex, block, none) {
+  .d-#{$display} {
+    display: $display;
+  }
+}
+
+@each $align in (center) {
+  .align-items-#{$align} {
+    align-items: $align;
+  }
+}
+
+.flex-wrap {
+  flex-flow: wrap;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@each $position in (relative, absolute) {
+  .p-#{$position} {
+    position: $position;
+  }
+}
+
+@each $orientation in (row, column) {
+  .flex-#{$orientation} {
+    flex-direction: $orientation;
+  }
+}
+
+@media (min-width: 768px) {
+  @each $display in (flex, block, none) {
+    .d-md-#{$display} {
+      display: $display;
+    }
+  }
+
+  @each $align in (center) {
+    .align-items-md-#{$align} {
+      align-items: $align;
+    }
+  }
+
+  @each $align in (center) {
+    .justify-content-md-#{$align} {
+      justify-content: $align;
+    }
+  }
+
+  @each $orientation in (row, column) {
+    .flex-md-#{$orientation} {
+      flex-direction: $orientation;
+    }
+  }
+}
