@@ -5,6 +5,14 @@ export default {
 
     const data = await response.json();
 
-    commit('GET_SERVICES', data);
+    commit('GET_SERVICES', data.values);
+  },
+
+  selectService ({ commit, state }, payload) {
+    commit('ADD_SELECTED_SERVICE', [
+      ...state.selectedServices, Object.assign(payload, {
+        id: new Date().getTime()
+      })
+    ]);
   }
 }

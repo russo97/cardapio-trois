@@ -4,9 +4,8 @@
     class="service cursor-pointer"
   >
     <div
-      class="service__wrapper d-flex flex-wrap align-items-center"
       v-hammer:tap="onTap"
-      v-hammer:pan.horizontal="onPanStart"
+      class="service__wrapper d-flex flex-wrap align-items-center"
     >
       <div class="service__pill" />
 
@@ -30,6 +29,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "ServiceItem",
 
@@ -42,25 +43,27 @@ export default {
 
   data () {
     return {
-      hasHorizontalMove: 0
+      isSelected: 0
     }
   },
 
   computed: {
     additionalClasses () {
       return {
-        'service--panned': this.hasHorizontalMove
+        'service--selected': this.isSelected
       }
     }
   },
 
   methods: {
-    onTap () {
-      this.hasHorizontalMove = !this.hasHorizontalMove;
-    },
+    ...mapActions([
+      'selectService'
+    ]),
 
-    onPanStart (e) {
-      this.hasHorizontalMove = e.additionalEvent === "panright";
+    onTap () {
+      this.isSelected = !this.isSelected;
+
+      this.selectService(this.service);
     }
   }
 }
@@ -72,8 +75,8 @@ export default {
 
     transition: .4s ease-in-out;
 
-    &--panned {
-      background-color: var(--pillColor);
+    &--selected {
+      background-color: rgba(var(--pillColor), .1);
     }
 
     &__wrapper {
@@ -90,7 +93,7 @@ export default {
       @include sizedBox(13px, 33px);
 
       border-radius: 13px;
-      background-color: var(--pillColor);
+      background-color: rgb(var(--pillColor));
     }
 
     &__text {

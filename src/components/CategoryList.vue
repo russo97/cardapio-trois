@@ -69,15 +69,15 @@ export default {
       }
 
       .service:nth-child(3n - 2) {
-        --pillColor: #DBA06D;
+        --pillColor: 219, 160, 109;
       }
 
       .service:nth-child(3n - 1) {
-        --pillColor: #6F827C;
+        --pillColor: 111, 130, 124;
       }
 
       .service:nth-child(3n - 0) {
-        --pillColor: #E2C1E5;
+        --pillColor: 226, 193, 229;
       }
     }
   }

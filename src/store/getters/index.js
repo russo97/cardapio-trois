@@ -1,13 +1,11 @@
 
+import { v4 as UUIDV4 } from "uuid";
+
 import normalizeText from "@/utils/normalizer";
 
 export default {
   categoriesList (state) {
-    if (Array.isArray(state.services)) {
-      return []
-    }
-
-    return state.services.values.slice(1).reduce((acc, cur) => {
+    return state.services.slice(1).reduce((acc, cur) => {
       const categoryName = cur[0];
 
       if (acc.includes(categoryName)) return acc;
@@ -17,11 +15,7 @@ export default {
   },
 
   serviceList (state) {
-    if (Array.isArray(state.services)) {
-      return []
-    }
-
-    return state.services.values.slice(1).reduce((acc, cur) => {
+    return state.services.slice(1).reduce((acc, cur) => {
       const key = normalizeText(cur[0].toLowerCase().replace(/\s+/g, '_'));
 
       if (acc[key]) {
@@ -38,7 +32,7 @@ export default {
         ...acc,
         [key]: {
           key, name: cur[0], services: [{
-            title, price, description
+            id: UUIDV4(), title, price, description
           }]
         }
       }
