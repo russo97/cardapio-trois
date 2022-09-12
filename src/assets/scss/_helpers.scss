@@ -16,6 +16,10 @@
   }
 }
 
+.justify-content-between {
+  justify-content: space-between;
+}
+
 .flex-wrap {
   flex-flow: wrap;
 }
@@ -24,7 +28,7 @@
   cursor: pointer;
 }
 
-@each $position in (relative, absolute) {
+@each $position in (relative, absolute, fixed) {
   .p-#{$position} {
     position: $position;
   }

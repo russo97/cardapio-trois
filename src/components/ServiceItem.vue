@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "ServiceItem",
@@ -41,29 +41,34 @@ export default {
     }
   },
 
-  data () {
-    return {
-      isSelected: 0
-    }
-  },
-
   computed: {
+    ...mapState([
+      'selectedServices'
+    ]),
+
     additionalClasses () {
+      const isSelected = this.selectedServices.find(({ id }) => id === this.service.id);
+
       return {
-        'service--selected': this.isSelected
+        'service--selected': isSelected
       }
     }
   },
 
   methods: {
     ...mapActions([
-      'selectService'
+      'selectService',
+      'removeService'
     ]),
 
     onTap () {
-      this.isSelected = !this.isSelected;
+      const isSelectedService = this.selectedServices.find(({ id }) => id === this.service.id);
 
-      this.selectService(this.service);
+      if (!isSelectedService) {
+        return this.selectService(this.service);
+      }
+
+      this.removeService(this.service.id);
     }
   }
 }

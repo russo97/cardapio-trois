@@ -6,5 +6,9 @@ export default {
 
   ADD_SELECTED_SERVICE (state, payload) {
     state.selectedServices = payload;
+  },
+
+  REMOVE_SELECTED_SERVICE (state, payload) {
+    state.selectedServices = payload;
   }
 }

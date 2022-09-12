@@ -1,5 +1,5 @@
 <template>
-  <main class="categorylist">
+  <main class="categorylist p-relative">
     <div class="categorylist__wrapper">
       <div
         :key="category.key"
@@ -44,6 +44,15 @@ export default {
 
 <style lang="scss" scoped>
   .categorylist {
+    &:after {
+      content: '';
+      left: 0;
+      bottom: -80px;
+      position: absolute;
+      width: 100%;
+      height: 80px;
+      background: url("../../public/images/background-pattern.svg") center center / 50% repeat-x;
+    }
     &__wrapper {
       margin: 0 auto;
       padding: 0 20px;

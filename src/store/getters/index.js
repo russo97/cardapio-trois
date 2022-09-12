@@ -21,7 +21,7 @@ export default {
       if (acc[key]) {
         const [, title, price, description] = cur;
 
-        acc[key].services.push({ title, price, description });
+        acc[key].services.push({ id: UUIDV4(), title, price, description });
 
         return acc;
       }
