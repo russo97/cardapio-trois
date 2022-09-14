@@ -51,7 +51,7 @@ export default {
       position: absolute;
       width: 100%;
       height: 80px;
-      background: url("../../public/images/background-pattern.svg") center center / 50% repeat-x;
+      background: url("../../public/images/background-pattern.svg") center center / contain repeat-x;
     }
     &__wrapper {
       margin: 0 auto;
@@ -61,7 +61,7 @@ export default {
 
     &__item {
       & + & {
-        margin: 25px 0 0;
+        margin: 50px 0 0;
       }
     }
 

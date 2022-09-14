@@ -7,7 +7,18 @@
       v-hammer:tap="onTap"
       class="service__wrapper d-flex flex-wrap align-items-center"
     >
-      <div class="service__pill" />
+      <div class="service__controls d-flex flex-column h-100 justify-content-center">
+        <label class="service__checkbox">
+          <input
+            type="checkbox"
+            :value="isSelected"
+            class="d-flex w-100"
+            :checked="isSelected"
+          />
+        </label>
+
+        <div class="service__pill" />
+      </div>
 
       <div class="service__info d-flex flex-column flex-md-row">
         <div class="service__text d-flex flex-column">
@@ -46,11 +57,13 @@ export default {
       'selectedServices'
     ]),
 
-    additionalClasses () {
-      const isSelected = this.selectedServices.find(({ id }) => id === this.service.id);
+    isSelected () {
+      return this.selectedServices.find(({ id }) => id === this.service.id);
+    },
 
+    additionalClasses () {
       return {
-        'service--selected': isSelected
+        'service--selected': this.isSelected
       }
     }
   },
@@ -85,7 +98,7 @@ export default {
     }
 
     &__wrapper {
-      padding: 15px 0;
+      padding: 15px 0 15px 10px;
       touch-action: initial !important;
     }
 
@@ -93,8 +106,22 @@ export default {
       flex: 1;
     }
 
+    &__controls {
+      width: 15px;
+    }
+
+    &__checkbox {
+      width: 15px;
+      pointer-events: none;
+
+      input {
+        aspect-ratio: 1;
+      }
+    }
+
     &__pill {
-      flex: 0 0 13px;
+      flex: 1 0 33px;
+      margin: 12px auto 0;
       @include sizedBox(13px, 33px);
 
       border-radius: 13px;

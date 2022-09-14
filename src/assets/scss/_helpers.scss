@@ -4,7 +4,7 @@
   height: $height;
 }
 
-@each $display in (flex, block, none) {
+@each $display in (flex, block, none, inline) {
   .d-#{$display} {
     display: $display;
   }
@@ -16,6 +16,18 @@
   }
 }
 
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
 .justify-content-between {
   justify-content: space-between;
 }
@@ -24,8 +36,16 @@
   flex-flow: wrap;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
 }
 
 @each $position in (relative, absolute, fixed) {
@@ -62,6 +82,14 @@
   @each $orientation in (row, column) {
     .flex-md-#{$orientation} {
       flex-direction: $orientation;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  @each $display in (flex, block, none, inline) {
+    .d-md-#{$display} {
+      display: $display;
     }
   }
 }
